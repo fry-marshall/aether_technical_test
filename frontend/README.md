@@ -24,4 +24,9 @@ Also you can
    git clone https://github.com/fry-marshall/aether_technical_test.git
    cd frontend
 
+- Replace YOUR_API_KEY :
+
+   ```bash
+   const API_KEY = "YOUR_API_KEY";
+
 - Open index.html in your browser

@@ -30,7 +30,7 @@ controls.enableZoom = true;
 controls.enablePan = true;
 
 // add the plane by requesting a satelite image through google maps api
-const API_KEY = "AIzaSyBhhMqiFO7NZgdocTYxmxy68vWZ3u-rFrM";
+const API_KEY = "YOUR_API_KEY";
 const mapImageUrl = `https://maps.googleapis.com/maps/api/staticmap?center=34.0626616,-118.403738&zoom=21&size=640x640&maptype=satellite&key=${API_KEY}`;
 
 const textureLoader = new THREE.TextureLoader();
