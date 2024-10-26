@@ -9,7 +9,7 @@
 
 ## Features
 
-- Part one ( I've used easy calculation method for that ):
+- Part one ( I've used easy calculation method for that):
     - Enter a US address to search for energy tariffs.
     - Input kWh consumption values (ranging from 1000 to 10000).
     -  Specify a percentage escalator between 4% and 10%.
@@ -43,11 +43,12 @@ To install and run the application, follow these steps:
     - Run the app
 
     ```bash
-    npm start
+        npm start
 
 - Part two
     - Go to directtory
-    ```bash
+
+        ```bash
         cd partTwo
 
     - Install Django & Django REST Framework (Optional)
@@ -58,5 +59,3 @@ To install and run the application, follow these steps:
     - Run the server
         ```bash
         python manage.py runserver
-
-
