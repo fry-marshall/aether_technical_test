@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+input {
+  border-radius: 3px;
+  border: none;
+  height: 30px;
+  padding: 6px;
+  outline-color: #00a3ff;
+  background-color: #f3f3f3;
+  width: 100%;
+  margin-right: 20px;
+}
+
+input:hover:not(:focus) {
+  background-color: #f6f6f6;
+}
+
+input:focus {
+  background-color: #ffffff;
+}
+
+.search {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #1374c4;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.card {
+  padding: 10px;
+  background-color: #13c469;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.card .info {
+  display: flex;
+  color: #ffffff;
+  justify-content: space-between;
+  margin: 16px 0;
+}
+
+.tariff-selected {
+  display: flex;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.input h4 {
+  font-size: 13px;
+  margin-bottom: 5px;
+}
