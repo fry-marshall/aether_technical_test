@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TariffSelected from "./TariffSelected";
 import Table from "./Table";
-import {tariffPriceEasyMethod} from "./tariff-price-easymethod";
+import { tariffPriceEasyMethod } from "./tariff-price-easymethod";
 import LineChart from "./LineChart";
 
 function UtilityRate() {
@@ -15,7 +15,15 @@ function UtilityRate() {
   const [error, setError] = useState(null);
 
   const fetchUtilityRate = () => {
-    if (address === "" || isNaN(consumption) || isNaN(escalator) || consumption <1000 || consumption > 10000 || escalator <4 || escalator > 10) {
+    if (
+      address === "" ||
+      isNaN(consumption) ||
+      isNaN(escalator) ||
+      consumption < 1000 ||
+      consumption > 10000 ||
+      escalator < 4 ||
+      escalator > 10
+    ) {
       alert("Fill out all the inputs well before searching");
     } else {
       setLoading(true);
@@ -62,11 +70,28 @@ function UtilityRate() {
 
   const handleTariffSelected = (tariff) => {
     setTariffSelected(tariff);
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Basic cm9vdDowMDAwMDAwMA==" },
+      body: JSON.stringify(
+        { 
+          address_input: address, 
+          utility_rate_selected: tariffPriceEasyMethod(tariff.energyratestructure, consumption),
+          proposal_utility: {
+            openEI_id: tariff.label,
+            tariff_name: tariff.name,
+            pricing_matrix: tariff.energyweekdayschedule
+          }
+        }),
+    };
+    fetch("http://127.0.0.1:8000/projects/", requestOptions).catch((e) => {
+      console.log(e)
+    });
   };
 
   return (
     <div>
-      <h1 style={{margin:'0 0 20px 0'}}>Utility rate</h1>
+      <h1 style={{ margin: "0 0 20px 0" }}>Utility rate</h1>
       <div className="search">
         <div className="input">
           <h4>Enter US address</h4>
@@ -112,14 +137,20 @@ function UtilityRate() {
         {mostLikelyTariff && (
           <TariffSelected
             title="Most Likely Tariff"
-            price={tariffPriceEasyMethod(mostLikelyTariff.energyratestructure, consumption)}
+            price={tariffPriceEasyMethod(
+              mostLikelyTariff.energyratestructure,
+              consumption
+            )}
             name={mostLikelyTariff.name}
           />
         )}
         {tariffSelected && (
           <TariffSelected
             title="Tariff selected"
-            price={tariffPriceEasyMethod(tariffSelected.energyratestructure, consumption)}
+            price={tariffPriceEasyMethod(
+              tariffSelected.energyratestructure,
+              consumption
+            )}
             name={tariffSelected.name}
           />
         )}
@@ -133,7 +164,11 @@ function UtilityRate() {
       </div>
       <div className="tariffs-loaded">
         {tariffs && (
-          <Table consumption={consumption} data={tariffs} OnTariffSelected={handleTariffSelected} />
+          <Table
+            consumption={consumption}
+            data={tariffs}
+            OnTariffSelected={handleTariffSelected}
+          />
         )}
       </div>
     </div>
