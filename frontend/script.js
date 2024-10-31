@@ -133,7 +133,7 @@ function onMouseClick(event) {
     if (intersectsWithPlane.length > 0) {
       const point = intersectsWithPlane[0].point;
       drawPoint(point);
-      points.push(new THREE.Vector3(point.x, point.y, 0));
+      points.push(new THREE.Vector2(point.x, point.y));
 
       if (points.length > 1) {
         const geometry = new THREE.BufferGeometry().setFromPoints(points);
