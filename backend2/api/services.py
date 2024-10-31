@@ -16,12 +16,12 @@ def tariffPriceEasyMethod(energyratestructure):
     return round(in_cent, 2)
 
 
-def calculateCostForTheFirstYear(energyratestructure):
-    return round((tariffPriceEasyMethod(energyratestructure) / 100) * 24 * 365, 2)
+def calculateCostForTheFirstYear(energyratestructure, consumption):
+    return round((tariffPriceEasyMethod(energyratestructure) / 100) * consumption, 2)
 
 
-def graphData(escalator, energyratestructure):
-    data = [round(calculateCostForTheFirstYear(energyratestructure), 2)]
+def graphData(escalator, energyratestructure, consumption):
+    data = [round(calculateCostForTheFirstYear(energyratestructure, consumption), 2)]
     for i in range(1, 20):
         value = data[i-1] + data[i-1]*(escalator/100)
         data.append(round(value, 2))

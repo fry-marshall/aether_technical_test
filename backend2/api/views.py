@@ -33,7 +33,7 @@ def retrieve_utility_data(request):
         )
     else:
         return Response({"error": "User not authenticated"}, status=status.HTTP_401_UNAUTHORIZED)
-    required_fields = ['address', 'consumption']
+    required_fields = ['address', 'consumption', 'escalator']
     missing_fields = []
     for field in required_fields:
         if field not in request.data:
@@ -43,6 +43,7 @@ def retrieve_utility_data(request):
         return Response({'error': f'Missing fields: {", ".join(missing_fields)}'}, status=400)
     
     escalator = request.data.get('escalator')
+    consumption = request.data.get('consumption')
 
     api_key = "VOeIh4rvwI0CjtMciHqOMb04ax2GQxQIoYuSgMiy"
     effective_on_date = "1640995199"
@@ -56,11 +57,11 @@ def retrieve_utility_data(request):
             data.append({
                 "openEI_id": item['label'],
                 "average_price": tariffPriceEasyMethod(item['energyratestructure']),
-                "price_first_year": calculateCostForTheFirstYear(item['energyratestructure']),
+                "price_first_year": calculateCostForTheFirstYear(item['energyratestructure'], consumption),
                 "name": item['name'],
                 "utility": item['utility'],
                 "is_more_likely_tariff": item.get('is_default', False) and item.get('approved', False),
-                "graphdata": graphData(escalator, item['energyratestructure']),
+                "graphdata": graphData(escalator, item['energyratestructure'], consumption),
                 'pricing_matrix': item['energyweekdayschedule'],
             })
             if item.get('is_default', False) and item.get('approved', False) == True:
